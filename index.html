@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaloneSounds | Discover Music</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b0f;color:#fff;font-family:Arial,sans-serif}
+header{padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
+.logo{font-size:23px;font-weight:bold;color:#20e07a}
+.logo span{color:white}
+nav a{color:#aaa;text-decoration:none;margin-left:14px;font-size:14px}
+.hero{padding:30px 20px;background:linear-gradient(135deg,#142c20,#111118,#262039)}
+.hero small{color:#20e07a;font-weight:bold}
+.hero h1{font-size:35px;margin:15px 0}
+.hero p{color:#bbb;line-height:1.6}
+.btn{display:inline-block;background:#20e07a;color:#08110b;padding:13px 20px;border-radius:30px;text-decoration:none;font-weight:bold;margin-top:20px}
+.section{padding:25px 18px}
+.section h2{margin-bottom:18px;font-size:22px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#17171e;padding:12px;border-radius:14px;overflow:hidden}
+.cover{height:145px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:45px;background:linear-gradient(135deg,#305e4b,#19202d)}
+.c2{background:linear-gradient(135deg,#a54e69,#3b2145)}
+.c3{background:linear-gradient(135deg,#db8741,#40241b)}
+.c4{background:linear-gradient(135deg,#3d66b7,#242444)}
+.card h3{font-size:15px;margin-top:12px}
+.card p{color:#aaa;font-size:12px;margin-top:5px}
+.song{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid #222;gap:12px}
+.songcover{width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#293b33;font-size:23px}
+.songinfo{flex:1}
+.songinfo h3{font-size:14px}
+.songinfo p{color:#999;font-size:12px;margin-top:5px}
+.play{border:0;background:#20e07a;color:#000;width:38px;height:38px;border-radius:50%;font-size:17px;cursor:pointer}
+.artist{background:#17171e;padding:15px;border-radius:12px;margin-bottom:12px}
+.artist p{color:#aaa;font-size:13px;margin-top:5px}
+.search{width:100%;padding:14px;border:1px solid #333;border-radius:25px;background:#17171e;color:white;margin-top:10px}
+footer{padding:30px 20px;color:#777;text-align:center;font-size:12px;border-top:1px solid #222;margin-bottom:85px}
+.player{position:fixed;bottom:0;left:0;right:0;background:#191920;border-top:1px solid #333;padding:12px;display:flex;align-items:center;gap:12px}
+.playerinfo{flex:1}
+.playerinfo strong{font-size:13px}
+.playerinfo p{font-size:11px;color:#999;margin-top:4px}
+.player button{background:#20e07a;border:0;border-radius:50%;width:42px;height:42px;font-size:17px}
+#status{font-size:11px;color:#20e07a}
+@media(min-width:700px){.cards{grid-template-columns:repeat(4,1fr)}.hero{padding:60px}.hero h1{font-size:50px}.section{padding:35px}}
+</style>
+</head>
+<body>
 
+<header>
+  <div class="logo">Salone<span>Sounds</span></div>
+  <nav>
+    <a href="#music">Music</a>
+    <a href="#artists">Artists</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <small>THE HOME OF SIERRA LEONE MUSIC</small>
+  <h1>Your sound.<br>Your people.</h1>
+  <p>Discover fresh music, support local artists
+  and enjoy the sounds of Sierra Leone.</p>
+  <a href="#music" class="btn">Explore Music</a>
+</section>
+
+<section class="section">
+  <h2>Discover genres</h2>
+  <div class="cards">
+    <div class="card"><div class="cover">🎤</div><h3>Afrobeats</h3><p>Fresh African sounds</p></div>
+    <div class="card"><div class="cover c2">🎧</div><h3>Hip-Hop</h3><p>Rap and street vibes</p></div>
+    <div class="card"><div class="cover c3">💃</div><h3>Dancehall</h3><p>Move to the rhythm</p></div>
+    <div class="card"><div class="cover c4">🎶</div><h3>Gospel</h3><p>Music for the soul</p></div>
+  </div>
+</section>
+
+<section class="section" id="music">
+  <h2>Trending songs</h2>
+  <input class="search" id="search" placeholder="Search songs or artists..." oninput="searchSongs()">
+  <div id="songs">
+    <div class="song" data-name="Freedom Artist One">
+      <div class="songcover">🎵</div>
+      <div class="songinfo"><h3>Freedom</h3><p>Artist One</p></div>
+      <button class="play" onclick="playSong('Freedom','Artist One')">▶</button>
+    </div>
+    <div class="song" data-name="Sweet Salone Artist Two">
+      <div class="songcover">🌴</div>
+      <div class="songinfo"><h3>Sweet Salone</h3><p>Artist Two</p></div>
+      <button class="play" onclick="playSong('Sweet Salone','Artist Two')">▶</button>
+    </div>
+    <div class="song" data-name="African Queen Artist Three">
+      <div class="songcover">👑</div>
+      <div class="songinfo"><h3>African Queen</h3><p>Artist Three</p></div>
+      <button class="play" onclick="playSong('African Queen','Artist Three')">▶</button>
+    </div>
+    <div class="song" data-name="Good Life Artist Four">
+      <div class="songcover">✨</div>
+      <div class="songinfo"><h3>Good Life</h3><p>Artist Four</p></div>
+      <button class="play" onclick="playSong('Good Life','Artist Four')">▶</button>
+    </div>
+  </div>
+  <p id="status" style="margin-top:15px">Demo songs — real music will be added later.</p>
+</section>
+
+<section class="section" id="artists">
+  <h2>Featured artists</h2>
+  <div class="artist"><h3>🎤 Artist One</h3><p>Discover their music on SaloneSounds.</p></div>
+  <div class="artist"><h3>🎤 Artist Two</h3><p>Discover their music on SaloneSounds.</p></div>
+  <div class="artist"><h3>🎤 Artist Three</h3><p>Discover their music on SaloneSounds.</p></div>
+</section>
+
+<footer>
+  <div class="logo">SaloneSounds</div>
+  <p style="margin-top:10px">Discover. Listen. Support artists.</p>
+  <p style="margin-top:10px">© 2026 SaloneSounds</p>
+</footer>
+
+<div class="player">
+  <div class="playerinfo">
+    <strong id="now">Nothing playing</strong>
+    <p id="artistnow">Choose a song</p>
+  </div>
+  <button onclick="togglePlay()" id="mainplay">▶</button>
+</div>
+
+<script>
+let playing=false;
+function playSong(song,artist){
+ document.getElementById('now').textContent=song;
+ document.getElementById('artistnow').textContent=artist;
+ playing=true;
+ document.getElementById('mainplay').textContent='❚❚';
+ document.getElementById('status').textContent='Demo player selected: '+song+'. Actual audio will be connected later.';
+}
+function togglePlay(){
+ if(document.getElementById('now').textContent==='Nothing playing'){
+  document.getElementById('status').textContent='Choose a song first.';
+  return;
+ }
+ playing=!playing;
+ document.getElementById('mainplay').textContent=playing?'❚❚':'▶';
+}
+function searchSongs(){
+ let q=document.getElementById('search').value.toLowerCase();
+ document.querySelectorAll('.song').forEach(s=>{
+  s.style.display=s.dataset.name.toLowerCase().includes(q)?'flex':'none';
+ });
+}
+</script>
+</body>
+</html>
