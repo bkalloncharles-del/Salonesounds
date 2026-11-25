@@ -146,5 +146,16 @@ function searchSongs(){
  });
 }
 </script>
+  <script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const SUPABASE_URL = https://ulrxwhfegldrcgckhegh.supabase.co;
+  const SUPABASE_KEY = sb_publishable_iAXw-KUmNsj-sCMlVpdTng_scMQfR98;
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  window.supabaseClient = supabase;
+  console.log('SaloneTunes connected to Supabase!');
+</script>
 </body>
 </html>
