@@ -157,5 +157,58 @@ function searchSongs(){
   window.supabaseClient = supabase;
   console.log('SaloneTunes connected to Supabase!');
 </script>
+  
+<section id="artist-account" style="background:#151515;color:white;padding:25px;margin:20px auto;max-width:500px;border-radius:12px;">
+  <h2>Join SaloneTunes</h2>
+  <p>Create your artist account or log in.</p>
+
+  <input id="artist-email" type="email" placeholder="Your email address" style="display:block;width:100%;padding:12px;margin:10px 0;box-sizing:border-box;">
+  <input id="artist-password" type="password" placeholder="Create a password (at least 6 characters)" style="display:block;width:100%;padding:12px;margin:10px 0;box-sizing:border-box;">
+
+  <button id="artist-register" style="padding:12px;background:#16a34a;color:white;border:0;border-radius:6px;width:100%;margin:5px 0;">Create Artist Account</button>
+
+  <button id="artist-login" style="padding:12px;background:#333;color:white;border:0;border-radius:6px;width:100%;margin:5px 0;">Log In</button>
+
+  <button id="artist-logout" style="padding:12px;background:#555;color:white;border:0;border-radius:6px;width:100%;margin:5px 0;">Log Out</button>
+
+  <p id="artist-message">Welcome to SaloneTunes!</p>
+</section>
+
+<script type="module">
+  const supabase = window.supabaseClient;
+  const message = document.getElementById('artist-message');
+
+  document.getElementById('artist-register').onclick = async () => {
+    const email = document.getElementById('artist-email').value.trim();
+    const password = document.getElementById('artist-password').value;
+
+    if (!email || password.length < 6) {
+      message.textContent = 'Enter a valid email and password of at least 6 characters.';
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: window.location.origin }
+    });
+
+    message.textContent = error ? error.message : 'Registration submitted! Check your email to confirm your account.';
+  };
+
+  document.getElementById('artist-login').onclick = async () => {
+    const email = document.getElementById('artist-email').value.trim();
+    const password = document.getElementById('artist-password').value;
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    message.textContent = error ? error.message : 'Welcome back! You are logged in.';
+  };
+
+  document.getElementById('artist-logout').onclick = async () => {
+    const { error } = await supabase.auth.signOut();
+    message.textContent = error ? error.message : 'You have logged out.';
+  };
+</script>
+
 </body>
 </html>
